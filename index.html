@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbería Jaén | Cortes Modernos & Clásicos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0a0a0a;
+      color:#fff;
+      overflow-x:hidden;
+      line-height:1.6;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      position:relative;
+      height:100vh;
+      min-height:600px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      background:#0a0a0a;
+      overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1920&q=90&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      opacity:0.25;
+      animation:heroZoom 12s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom{
+      from{transform:scale(1);}
+      to{transform:scale(1.08);}
+    }
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.6) 60%,rgba(10,10,10,0.95) 100%);
+    }
+    .hero-content{
+      position:relative;z-index:2;
+      padding:20px;
+      max-width:800px;
+    }
+    .hero-badge{
+      display:inline-block;
+      border:1px solid rgba(212,175,55,0.5);
+      color:#d4af37;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      padding:7px 20px;
+      border-radius:2px;
+      margin-bottom:28px;
+      animation:fadeUp 0.8s ease forwards;
+    }
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.8rem,7vw,5.5rem);
+      font-weight:900;
+      line-height:1.05;
+      margin-bottom:20px;
+      animation:fadeUp 0.8s 0.2s ease both;
+    }
+    .hero h1 span{color:#d4af37;}
+    .hero p{
+      font-size:1.1rem;
+      font-weight:300;
+      color:rgba(255,255,255,0.7);
+      letter-spacing:1px;
+      margin-bottom:40px;
+      animation:fadeUp 0.8s 0.4s ease both;
+    }
+    .hero-btns{
+      display:flex;gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      animation:fadeUp 0.8s 0.6s ease both;
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(30px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    .scroll-line{
+      position:absolute;
+      bottom:30px;left:50%;
+      transform:translateX(-50%);
+      display:flex;flex-direction:column;
+      align-items:center;gap:6px;z-index:2;
+    }
+    .scroll-line span{
+      font-size:10px;letter-spacing:3px;
+      color:rgba(255,255,255,0.4);
+    }
+    .scroll-dot{
+      width:1px;height:60px;
+      background:linear-gradient(to bottom,rgba(212,175,55,0.8),transparent);
+      animation:scrollAnim 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollAnim{
+      0%,100%{opacity:0;transform:scaleY(0.3) translateY(-20px);}
+      50%{opacity:1;transform:scaleY(1) translateY(0);}
+    }
+
+    /* ── BUTTONS ── */
+    .btn-gold{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#d4af37;color:#0a0a0a;
+      padding:14px 28px;border-radius:3px;
+      text-decoration:none;font-weight:600;
+      font-size:0.9rem;letter-spacing:1px;
+      transition:all 0.3s;
+    }
+    .btn-gold:hover{
+      background:#f0cc55;
+      transform:translateY(-2px);
+      box-shadow:0 8px 30px rgba(212,175,55,0.35);
+    }
+    .btn-outline{
+      display:inline-flex;align-items:center;gap:8px;
+      background:transparent;color:#fff;
+      padding:14px 28px;border-radius:3px;
+      text-decoration:none;font-weight:500;
+      font-size:0.9rem;letter-spacing:1px;
+      border:1px solid rgba(255,255,255,0.35);
+      transition:all 0.3s;
+    }
+    .btn-outline:hover{
+      background:rgba(255,255,255,0.08);
+      border-color:rgba(255,255,255,0.7);
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar{
+      background:#111;
+      border-top:1px solid #1f1f1f;
+      border-bottom:1px solid #1f1f1f;
+      display:flex;flex-wrap:wrap;
+      justify-content:center;
+    }
+    .stat{
+      padding:30px 50px;
+      border-right:1px solid #1f1f1f;
+      text-align:center;flex:1;min-width:150px;
+    }
+    .stat:last-child{border-right:none;}
+    .stat-num{
+      font-family:'Playfair Display',serif;
+      font-size:2.2rem;font-weight:700;color:#d4af37;
+    }
+    .stat-label{
+      font-size:11px;letter-spacing:2px;
+      color:rgba(255,255,255,0.4);margin-top:4px;
+    }
+
+    /* ── SECTIONS ── */
+    section{padding:100px 24px;text-align:center;}
+    .section-tag{
+      font-size:10px;letter-spacing:5px;color:#d4af37;
+      text-transform:uppercase;margin-bottom:14px;display:block;
+    }
+    .section-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:12px;
+    }
+    .section-sub{
+      color:rgba(255,255,255,0.5);font-size:0.95rem;
+      font-weight:300;margin-bottom:60px;letter-spacing:0.5px;
+    }
+    .divider{
+      display:flex;align-items:center;gap:16px;
+      margin:0 auto 50px;max-width:200px;
+    }
+    .divider-line{flex:1;height:1px;background:rgba(212,175,55,0.4);}
+    .divider-diamond{
+      width:8px;height:8px;
+      background:#d4af37;transform:rotate(45deg);flex-shrink:0;
+    }
+
+    /* ── SERVICES ── */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:2px;max-width:1000px;margin:0 auto;
+    }
+    .srv-card{
+      position:relative;overflow:hidden;
+      aspect-ratio:3/4;cursor:pointer;background:#111;
+    }
+    .srv-card img{
+      width:100%;height:100%;object-fit:cover;
+      transition:transform 0.6s ease,filter 0.6s ease;
+      filter:grayscale(30%) brightness(0.7);
+    }
+    .srv-card:hover img{
+      transform:scale(1.08);
+      filter:grayscale(0%) brightness(0.5);
+    }
+    .srv-card-over{
+      position:absolute;inset:0;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      padding:28px;
+      background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,transparent 60%);
+    }
+    .srv-price{
+      font-size:11px;letter-spacing:3px;
+      color:#d4af37;font-weight:600;margin-bottom:6px;
+    }
+    .srv-name{
+      font-family:'Playfair Display',serif;
+      font-size:1.5rem;font-weight:700;
+    }
+    .srv-desc{
+      font-size:0.82rem;color:rgba(255,255,255,0.6);
+      margin-top:5px;font-weight:300;
+      opacity:0;transform:translateY(10px);
+      transition:all 0.4s ease;
+    }
+    .srv-card:hover .srv-desc{opacity:1;transform:translateY(0);}
+
+    /* ── GALLERY ── */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:3px;max-width:1100px;margin:0 auto;
+    }
+    .gal-item{overflow:hidden;position:relative;}
+    .gal-item.big{grid-row:span 2;}
+    .gal-item img{
+      width:100%;height:100%;object-fit:cover;min-height:200px;
+      transition:transform 0.6s ease,filter 0.4s;
+      filter:brightness(0.85);
+    }
+    .gal-item:hover img{transform:scale(1.05);filter:brightness(1);}
+
+    /* ── TEAM ── */
+    .team-grid{
+      display:flex;flex-wrap:wrap;gap:30px;
+      justify-content:center;max-width:900px;margin:0 auto;
+    }
+    .team-card{
+      background:#111;border:1px solid #1f1f1f;
+      border-radius:4px;overflow:hidden;width:260px;
+      transition:transform 0.3s,border-color 0.3s;
+    }
+    .team-card:hover{transform:translateY(-6px);border-color:#d4af37;}
+    .team-card img{
+      width:100%;height:300px;object-fit:cover;
+      object-position:top;filter:grayscale(20%);
+    }
+    .team-info{padding:20px;}
+    .team-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;}
+    .team-role{font-size:11px;letter-spacing:3px;color:#d4af37;margin-top:4px;}
+    .team-bio{font-size:0.82rem;color:rgba(255,255,255,0.5);margin-top:10px;font-weight:300;}
+
+    /* ── BOOKING ── */
+    .booking-sec{
+      background:#0f0d07;
+      border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;
+      position:relative;overflow:hidden;
+      padding:100px 24px;text-align:center;
+    }
+    .booking-sec::before{
+      content:'';position:absolute;inset:0;
+      background:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1600&q=80&auto=format&fit=crop') center/cover;
+      opacity:0.05;
+    }
+    .booking-inner{position:relative;z-index:1;}
+    .booking-sec h2{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,5vw,3.5rem);margin-bottom:16px;
+    }
+
+    .contact-grid{
+      display:flex;flex-wrap:wrap;gap:24px;
+      justify-content:center;margin-top:50px;
+    }
+    .contact-item{
+      background:#0f0f0f;border:1px solid #1f1f1f;
+      border-radius:4px;padding:28px 36px;
+      min-width:200px;text-align:center;
+      transition:border-color 0.3s;
+    }
+    .contact-item:hover{border-color:#d4af37;}
+    .contact-icon{font-size:1.4rem;margin-bottom:10px;}
+    .contact-label{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.4);margin-bottom:6px;}
+    .contact-val{font-size:1rem;font-weight:500;}
+
+    /* ── FOOTER ── */
+    footer{
+      background:#050505;border-top:1px solid #1a1a1a;
+      padding:40px 24px;text-align:center;
+      color:rgba(255,255,255,0.3);font-size:0.8rem;
+    }
+    .footer-logo{
+      font-family:'Playfair Display',serif;
+      font-size:1.6rem;font-weight:700;color:#d4af37;margin-bottom:16px;
+    }
+
+    /* ── REVEAL ── */
+    .reveal{
+      opacity:0;transform:translateY(40px);
+      transition:opacity 0.8s ease,transform 0.8s ease;
+    }
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:600px){
+      .gallery-grid{grid-template-columns:repeat(2,1fr);}
+      .gal-item.big{grid-row:span 1;}
+      .stat{padding:20px 24px;}
+      .services-grid{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Barbería Premium · Jaén, España</div>
+    <h1>El Arte del<br><span>Corte Perfecto</span></h1>
+    <p>Fades · Cortes Clásicos · Barba Profesional</p>
+    <div class="hero-btns">
+      <a class="btn-gold" href="https://wa.me/34XXXXXXXXX">
+        <i class="ti ti-brand-whatsapp"></i> Reservar por WhatsApp
+      </a>
+      <a class="btn-outline" href="tel:+34XXXXXXXXX">
+        <i class="ti ti-phone"></i> Llamar ahora
+      </a>
+    </div>
+  </div>
+  <div class="scroll-line">
+    <span>SCROLL</span>
+    <div class="scroll-dot"></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Años de experiencia</div></div>
+  <div class="stat"><div class="stat-num">3K+</div><div class="stat-label">Clientes satisfechos</div></div>
+  <div class="stat"><div class="stat-num">12</div><div class="stat-label">Servicios disponibles</div></div>
+  <div class="stat"><div class="stat-num">★ 4.9</div><div class="stat-label">Valoración media</div></div>
+</div>
+
+<!-- SERVICIOS -->
+<section class="reveal">
+  <span class="section-tag">Lo que ofrecemos</span>
+  <h2 class="section-title">Nuestros Servicios</h2>
+  <p class="section-sub">Técnica premium, resultados que hablan solos</p>
+  <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+  <div class="services-grid">
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&q=85&auto=format&fit=crop" alt="Fade">
+      <div class="srv-card-over">
+        <span class="srv-price">DESDE 15€</span>
+        <div class="srv-name">Fade</div>
+        <div class="srv-desc">Degradado perfecto, líneas limpias y definidas</div>
+      </div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&q=85&auto=format&fit=crop" alt="Corte clásico">
+      <div class="srv-card-over">
+        <span class="srv-price">DESDE 12€</span>
+        <div class="srv-name">Corte Clásico</div>
+        <div class="srv-desc">Estilo atemporal con maestría artesanal</div>
+      </div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=85&auto=format&fit=crop" alt="Barba">
+      <div class="srv-card-over">
+        <span class="srv-price">DESDE 10€</span>
+        <div class="srv-name">Barba</div>
+        <div class="srv-desc">Perfilado, arreglo y tratamiento premium</div>
+      </div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=800&q=85&auto=format&fit=crop" alt="Combo">
+      <div class="srv-card-over">
+        <span class="srv-price">DESDE 22€</span>
+        <div class="srv-name">Combo</div>
+        <div class="srv-desc">Corte + barba + tratamiento todo incluido</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="reveal" style="background:#050505;padding-top:80px;padding-bottom:80px;">
+  <span class="section-tag">Trabajos realizados</span>
+  <h2 class="section-title">Galería</h2>
+  <p class="section-sub">Cada corte, una obra de arte</p>
+  <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+  <div class="gallery-grid">
+    <div class="gal-item big">
+      <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=85&auto=format&fit=crop" alt="Galería 1">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&q=85&auto=format&fit=crop" alt="Galería 2">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&q=85&auto=format&fit=crop" alt="Galería 3">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&q=85&auto=format&fit=crop" alt="Galería 4">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=85&auto=format&fit=crop" alt="Galería 5">
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="reveal">
+  <span class="section-tag">Los profesionales</span>
+  <h2 class="section-title">Nuestro Equipo</h2>
+  <p class="section-sub">Maestros del arte de la barbería</p>
+  <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?w=600&q=85&auto=format&fit=crop" alt="Carlos Ruiz">
+      <div class="team-info">
+        <div class="team-name">Carlos Ruiz</div>
+        <div class="team-role">Master Barber · 10 años</div>
+        <div class="team-bio">Especialista en fades y degradados. Formado en Madrid y Barcelona.</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=85&auto=format&fit=crop" alt="Diego Morales">
+      <div class="team-info">
+        <div class="team-name">Diego Morales</div>
+        <div class="team-role">Senior Barber · 6 años</div>
+        <div class="team-bio">Experto en cortes clásicos y tratamiento de barba profesional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVA -->
+<div class="booking-sec reveal">
+  <div class="booking-inner">
+    <span class="section-tag">¿Listo para el cambio?</span>
+    <h2>Reserva Tu Cita</h2>
+    <p style="color:rgba(255,255,255,0.55);font-size:1rem;font-weight:300;margin-bottom:36px;letter-spacing:0.5px;">
+      Sin esperas · Confirmación inmediata · Experiencia premium
+    </p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a class="btn-gold" href="https://wa.me/34XXXXXXXXX">
+        <i class="ti ti-brand-whatsapp"></i> Reservar por WhatsApp
+      </a>
+      <a class="btn-outline" href="tel:+34XXXXXXXXX">
+        <i class="ti ti-phone"></i> +34 XXX XXX XXX
+      </a>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-label">Ubicación</div>
+        <div class="contact-val">Jaén, España</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div class="contact-label">Horario</div>
+        <div class="contact-val">Lun–Sáb · 9:00–20:00</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💈</div>
+        <div class="contact-label">Sin cita previa</div>
+        <div class="contact-val">Según disponibilidad</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Barbería Jaén</div>
+  <p>Cortes modernos · Fades · Barba profesional</p>
+  <p style="margin-top:16px;">© 2025 Barbería Jaén · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
